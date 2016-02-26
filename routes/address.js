@@ -6,7 +6,6 @@ exports.addAddress = function(req, res) {
 		"city": req.query.city,
 		"zip": req.query.zip
 	} 
-	console.log(newAddress);
 	data["addresses"].push(newAddress);
 	res.render('address');
  }

@@ -18,7 +18,7 @@
   <script src="plugins/mobiscroll/js/mobiscroll.core.js"></script>
   <script src="plugins/mobiscroll/js/mobiscroll.frame.jqm.js"></script>
   <script src="plugins/mobiscroll/js/mobiscroll.jqmwidget.js"></script>
-  <script>
+  <!-- <script>
     //submit button
     $(document).ready(function() {
       $("#signupSubmit").click(function(e) {
@@ -69,37 +69,12 @@
       console.log(data);
     });
   </script>
-  <script>
-    $(document).ready(function() {
-          function save() {
-            var firstname = document.getElementById('sfname').value;
-            var lastname = document.getElementById('slname').value;
-            var email = document.getElementById('semail').value;
-            var pw = document.getElementById('spw').value;
-            localStorage.setItem('firstname', firstname);
-            localStorage.setItem('lastname', lastname);
-            localStorage.setItem('email', email);
-            localStorage.setItem('pw', pw);
-          }
-        function load() {
-          var storedfname = localStorage.getItem('firstname');
-          console.log(storedfname);
-          var storedlname = localStorage.getItem('lastname');
-          var storedemail = localStorage.getItem('email');
-          var storedpw = localStorage.getItem('pw');
-          $('#duration').html("storedfname");
-        }
-      })
-
-  </script>
-</head>
+</head> -->
 
 <body>
   <!---Splash Page------------------------------------------>
   <div data-role="page" id="splash">
-    <div data-role="header">
-      <h1>HostLuck</h1>
-    </div>
+{{> header}}
 
     <div data-role="main" class="ui-content">
       <h5>Existing Users</h5>
@@ -108,22 +83,10 @@
       <a href="#signup" class="ui-btn ui-corner-all">Sign Up</a>
     </div>
 
-    <div data-role="footer" data-position="fixed">
-      <h1>Shmerling, Nguyen, Holeman & Co.</h1>
-    </div>
-  </div>
+{{> footer}}
   <!---Signup Page--------------------------------------->
   <div data-role="page" id="signup">
-    <div data-role="header">
-      <h1>HostLuck</h1>
-    </div>
-    <div data-role="navbar">
-      <ul>
-        <li>
-          <a href="#" data-rel="back" data-icon="arrow-l"></a>
-        </li>
-      </ul>
-    </div>
+{{> header_back}}
 
     <div data-role="main" class="ui-content">
       <form method="get" action="/user">
@@ -132,34 +95,22 @@
         <label for="slname" class="ui-hidden-accessible">Lastname</label>
         <input type="text" name="slname" id="slname" placeholder="Last Name">
         <label for="semail" class="ui-hidden-accessible">Email</label>
-        <input type="text" name="semail" id="semail" placeholder="Email">
+        <input type="email" name="semail" id="semail" placeholder="Email">
         <label for="spw" class="ui-hidden-accessible">Password</label>
         <input type="password" name="spw" id="spw" placeholder="Password">
-        <input type="submit" id="signupSubmit" onclick="save()" value="Submit">
+        <input type="submit" id="signupSubmit" value="Submit">
       </form>
     </div>
 
-    <div data-role="footer" data-position="fixed">
-      <h3>Shmerling, Nguyen, Holeman & Co.</h3>
-    </div>
-  </div>
+{{> footer}}
   <!---Login Page--------------------------------------->
   <div data-role="page" id="login">
-    <div data-role="header">
-      <h1>HostLuck</h1>
-      <div data-role="navbar">
-        <ul>
-          <li>
-            <a href="#" data-rel="back" data-icon="arrow-l"></a>
-          </li>
-        </ul>
-      </div>
-    </div>
+{{> header_back}}
 
     <div data-role="main" class="ui-content">
-      <form method="post" action="demoform.asp">
+      <form method="post" action="main.php">
         <label for="email" class="ui-hidden-accessible">Email</label>
-        <input type="text" name="email" id="lemail" placeholder="Email">
+        <input type="email" name="email" id="lemail" placeholder="Email">
         <label for="password" class="ui-hidden-accessible">Password</label>
         <input type="password" name="pw" id="lpw" placeholder="Password">
       </form>
@@ -171,17 +122,10 @@
 
     </div>
 
-    <div data-role="footer" data-position="fixed">
-      <h3>Shmerling, Nguyen, Holeman & Co.</h3>
-    </div>
-  </div>
+{{> footer}}
   <!---Home Page--------------------------------------->
   <div data-role="page" id="home">
-    <div data-role="header">
-      <h1>HostLuck</h1>
-      <div data-role="navbar">
-      </div>
-    </div>
+{{> header}}
 
     <div id="duration"></div>
     <div data-role="main" class="ui-content">
@@ -191,60 +135,30 @@
     </div>
 
 
-    <div data-role="footer" data-position="fixed">
-      <h3>Shmerling, Nguyen, Holeman & Co.</h3>
-    </div>
-  </div>
+{{> footer}}
   <!---HostMain Page--------------------------------------->
   <div data-role="page" id="hostmain">
-    <div data-role="header">
-      <h1>HostLuck</h1>
-      <div data-role="navbar">
-        <ul>
-          <li>
-            <a href="#anylink" data-rel="back" data-icon="arrow-l"></a>
-          </li>
-          <li>
-            <a href="#home" data-icon="home"></a>
-          </li>
-        </ul>
-      </div>
-    </div>
+{{> header_back_home}}
 
     <div data-role="main" class="ui-content">
       <h1>Host an Event!</h1>
       <form method="post" action="demoform.asp">
         <label for="eventname" class="ui-hidden-accessible">Name Your Event</label>
-        <input type="text" name="fname" id="fname" placeholder="Name Your Event (Ex. Tom's party)">
-        <label for="date" class="ui-hidden-accessible">mm/dd/yy</label>
-        <input type="text" name="scroller" id="scroller" placeholder="mm/dd/yy (Ex. 03/24/16)">
-        <label for="time" class="ui-hidden-accessible">Time of Event</label>
-        <input type="text" name="time" id="time" placeholder="Time of Event (Ex. 8pm)">
+        <input type="text" name="eventname" placeholder="Name Your Event (Ex. Tom's party)">
+        <label for="eventdate" class="ui-hidden-accessible">mm/dd/yy</label>
+        <input type="date" name="eventdate" placeholder="mm/dd/yy (Ex. 03/24/16)">
+        <label for="eventtime" class="ui-hidden-accessible">Time of Event</label>
+        <input type="time" name="eventtime" placeholder="Time of Event (Ex. 8pm)">
       </form>
       <!-- <input type="submit" value="Submit"> -->
       <a href="#pickmealhost" id="hostmainSubmit" class="ui-btn ui-corner-all">Submit</a>
     </div>
 
 
-    <div data-role="footer" data-position="fixed">
-      <h3>Shmerling, Nguyen, Holeman & Co.</h3>
-    </div>
-  </div>
+{{> footer}}
   <!---PickMeal Page--------------------------------------->
   <div data-role="page" id="pickmealhost">
-    <div data-role="header">
-      <h1>HostLuck</h1>
-      <div data-role="navbar">
-        <ul>
-          <li>
-            <a href="#anylink" data-rel="back" data-icon="arrow-l"></a>
-          </li>
-          <li>
-            <a href="#home" data-icon="home"></a>
-          </li>
-        </ul>
-      </div>
-    </div>
+{{> header_back_home}}
 
     <div data-role="main" class="ui-content">
       <h1>Pick Your Meal!</h1>
@@ -260,25 +174,10 @@
       </ul>
     </div>
 
-    <div data-role="footer" data-position="fixed">
-      <h3>Shmerling, Nguyen, Holeman & Co.</h3>
-    </div>
-  </div>
+{{> footer}}
   <!---ChooseMeal Page--------------------------------------->
   <div data-role="page" id="choosemealguest">
-    <div data-role="header">
-      <h1>HostLuck</h1>
-      <div data-role="navbar">
-        <ul>
-          <li>
-            <a href="#anylink" data-rel="back" data-icon="arrow-l"></a>
-          </li>
-          <li>
-            <a href="#home" data-icon="home"></a>
-          </li>
-        </ul>
-      </div>
-    </div>
+{{> header_back_home}}
 
     <div data-role="main" class="ui-content">
       <h4>Choose the Meal you want to join!</h4>
@@ -295,35 +194,22 @@
       </ul>
     </div>
 
-    <div data-role="footer" data-position="fixed">
-      <h3>Shmerling, Nguyen, Holeman & Co.</h3>
-    </div>
-  </div>
+{{> footer}}
   <!---HostAddress Page--------------------------------------->
   <div data-role="page" id="hostaddress">
-    <div data-role="header">
-      <h1>HostLuck</h1>
-      <div data-role="navbar">
-        <ul>
-          <li>
-            <a href="#anylink" data-rel="back" data-icon="arrow-l"></a>
-          </li>
-          <li>
-            <a href="#home" data-icon="home"></a>
-          </li>
-        </ul>
-      </div>
-    </div>
+{{> header_back_home}}
 
     <div data-role="main" class="ui-content">
       <h4>What's the Address?</h4>
       <form method="post" action="demoform.asp">
-        <label for="eventname" class="ui-hidden-accessible">Street (Ex. 123 Gilman Dr)</label>
-        <input type="text" name="fname" id="fname" placeholder="Street Address (Ex. 123 Gilman Dr)">
-        <label for="date" class="ui-hidden-accessible">City (Ex. San Diego)</label>
-        <input type="text" name="date" id="date" placeholder="City (Ex. San Diego)">
-        <label for="time" class="ui-hidden-accessible">Zip Code (Ex. 90210)</label>
-        <input type="text" name="time" id="time" placeholder="Zip Code (Ex. 90210)">
+        <label for="street" class="ui-hidden-accessible">Street (Ex. 123 Gilman Dr)</label>
+        <input type="text" name="street" placeholder="Street Address (Ex. 123 Gilman Dr)">
+        <label for="city" class="ui-hidden-accessible">City (Ex. San Diego)</label>
+        <input type="text" name="city" placeholder="City (Ex. San Diego)">
+        <label for="state" class="ui-hidden-accessible">State</label>
+        <input type="text" name="state" placeholder="State">
+        <label for="zip" class="ui-hidden-accessible">Zip Code (Ex. 90210)</label>
+        <input type="number" name="zip" placeholder="Zip Code (Ex. 90210)">
       </form>
       <h3> OR </h3>
       <div data-role="collapsible">
@@ -339,50 +225,20 @@
       <a href="#eventsetup" class="ui-btn ui-corner-all">Submit</a>
     </div>
 
-    <div data-role="footer" data-position="fixed">
-      <h3>Shmerling, Nguyen, Holeman & Co.</h3>
-    </div>
-  </div>
+{{> footer}}
   <!---GuestMain Page--------------------------------------->
   <div data-role="page" id="guestmain">
-    <div data-role="header">
-      <h1>HostLuck</h1>
-      <div data-role="navbar">
-        <ul>
-          <li>
-            <a href="#anylink" data-rel="back" data-icon="arrow-l"></a>
-          </li>
-          <li>
-            <a href="#home" data-icon="home"></a>
-          </li>
-        </ul>
-      </div>
-    </div>
+{{> header_back_home}}
 
     <div data-role="main" class="ui-content">
       <h2>Choose Event</h2>
       <a href="#ingredientsmain" class="ui-btn ui-corner-all">Temp Button for sidescroll of Events</a>
     </div>
 
-    <div data-role="footer" data-position="fixed">
-      <h3>Shmerling, Nguyen, Holeman & Co.</h3>
-    </div>
-  </div>
+{{> footer}}
   <!---MyEventsMain Page--------------------------------------->
   <div data-role="page" id="myeventsmain">
-    <div data-role="header">
-      <h1>HostLuck</h1>
-      <div data-role="navbar">
-        <ul>
-          <li>
-            <a href="#anylink" data-rel="back" data-icon="arrow-l"></a>
-          </li>
-          <li>
-            <a href="#home" data-icon="home"></a>
-          </li>
-        </ul>
-      </div>
-    </div>
+{{> header_back_home}}
 
     <div data-role="main" class="ui-content">
       <h2>Host:</h2>
@@ -396,25 +252,10 @@
       <a href="#eventinfoguest" class="ui-btn ui-corner-all">Attending Party 3</a>
     </div>
 
-    <div data-role="footer" data-position="fixed">
-      <h3>Shmerling, Nguyen, Holeman & Co.</h3>
-    </div>
-  </div>
+{{> footer}}
   <!---GuestSearch Page--------------------------------------->
   <div data-role="page" id="guestsearch">
-    <div data-role="header">
-      <h1>HostLuck</h1>
-      <div data-role="navbar">
-        <ul>
-          <li>
-            <a href="#anylink" data-rel="back" data-icon="arrow-l"></a>
-          </li>
-          <li>
-            <a href="#home" data-icon="home"></a>
-          </li>
-        </ul>
-      </div>
-    </div>
+{{> header_back_home}}
 
     <div data-role="main" class="ui-content">
       <h2>Guests</h2>
@@ -423,25 +264,10 @@
       <a href="#anylink" class="ui-btn ui-corner-all">Guest</a>
     </div>
 
-    <div data-role="footer" data-position="fixed">
-      <h3>Shmerling, Nguyen, Holeman & Co.</h3>
-    </div>
-  </div>
+{{> footer}}
   <!---EventInfoHost Page--------------------------------------->
   <div data-role="page" id="eventinfohost">
-    <div data-role="header">
-      <h1>HostLuck</h1>
-      <div data-role="navbar">
-        <ul>
-          <li>
-            <a href="#anylink" data-rel="back" data-icon="arrow-l"></a>
-          </li>
-          <li>
-            <a href="#home" data-icon="home"></a>
-          </li>
-        </ul>
-      </div>
-    </div>
+{{> header_back_home}}
 
     <div data-role="main" class="ui-content">
       <h2>Event Info</h2>
@@ -461,25 +287,10 @@
       <a href="http://maps.apple.com/?daddr=9500+Gilman+Dr,+La+Jolla+CA+92093">Address: 123 test drive, TestingVille, CA 12345</a>
     </div>
 
-    <div data-role="footer" data-position="fixed">
-      <h3>Shmerling, Nguyen, Holeman & Co.</h3>
-    </div>
-  </div>
+{{> footer}}
   <!---EventInfoGuest Page--------------------------------------->
   <div data-role="page" id="eventinfoguest">
-    <div data-role="header">
-      <h1>HostLuck</h1>
-      <div data-role="navbar">
-        <ul>
-          <li>
-            <a href="#anylink" data-rel="back" data-icon="arrow-l"></a>
-          </li>
-          <li>
-            <a href="#home" data-icon="home"></a>
-          </li>
-        </ul>
-      </div>
-    </div>
+{{> header_back_home}}
 
     <div data-role="main" class="ui-content">
       <h2>Event Info</h2>
@@ -499,25 +310,10 @@
       <a href="http://maps.apple.com/?daddr=9500+Gilman+Dr,+La+Jolla+CA+92093">Address: 9500 Gilman Dr, La Jolla, CA 92093</a>
     </div>
 
-    <div data-role="footer" data-position="fixed">
-      <h3>Shmerling, Nguyen, Holeman & Co.</h3>
-    </div>
-  </div>
+{{> footer}}
   <!---IngredientsMain Page--------------------------------------->
   <div data-role="page" id="ingredientsmain">
-    <div data-role="header">
-      <h1>HostLuck</h1>
-      <div data-role="navbar">
-        <ul>
-          <li>
-            <a href="#anylink" data-rel="back" data-icon="arrow-l"></a>
-          </li>
-          <li>
-            <a href="#home" data-icon="home"></a>
-          </li>
-        </ul>
-      </div>
-    </div>
+{{> header_back_home}}
 
     <div data-role="main" class="ui-content ui-corner-all">
       <h1>Ingredients List</h1>
@@ -543,25 +339,10 @@
       </fieldset>
     </div>
 
-    <div data-role="footer" data-position="fixed">
-      <h3>Shmerling, Nguyen, Holeman & Co.</h3>
-    </div>
-  </div>
+{{> footer}}
   <!---FindEvent Page--------------------------------------->
   <div data-role="page" id="findevent">
-    <div data-role="header">
-      <h1>HostLuck</h1>
-      <div data-role="navbar">
-        <ul>
-          <li>
-            <a href="#anylink" data-rel="back" data-icon="arrow-l"></a>
-          </li>
-          <li>
-            <a href="#home" data-icon="home"></a>
-          </li>
-        </ul>
-      </div>
-    </div>
+{{> header_back_home}}
 
     <div data-role="main" class="ui-content ui-corner-all">
       <h1>Find Event</h1>
@@ -577,25 +358,10 @@
       <a href="#choosemealguest" class="ui-btn ui-corner-all">Submit</a>
     </div>
 
-    <div data-role="footer" data-position="fixed">
-      <h3>Shmerling, Nguyen, Holeman & Co.</h3>
-    </div>
-  </div>
+{{> footer}}
   <!---Recipe Page--------------------------------------->
   <div data-role="page" id="recipe">
-    <div data-role="header">
-      <h1>HostLuck</h1>
-      <div data-role="navbar">
-        <ul>
-          <li>
-            <a href="#anylink" data-rel="back" data-icon="arrow-l"></a>
-          </li>
-          <li>
-            <a href="#home" data-icon="home"></a>
-          </li>
-        </ul>
-      </div>
-    </div>
+{{> header_back_home}}
 
     <div data-role="main" class="ui-content ui-corner-all">
       <h2>Pot Pie</h2>
@@ -622,72 +388,30 @@
 
     </div>
 
-    <div data-role="footer" data-position="fixed">
-      <h3>Shmerling, Nguyen, Holeman & Co.</h3>
-    </div>
-  </div>
+{{> footer}}
   <!---Cancelled Page--------------------------------------->
   <div data-role="page" id="cancelled">
-    <div data-role="header">
-      <h1>HostLuck</h1>
-      <div data-role="navbar">
-        <ul>
-          <li>
-            <a href="#home" data-icon="home"></a>
-          </li>
-        </ul>
-      </div>
-    </div>
+{{>header_home}}
 
     <div data-role="main" class="ui-content ui-corner-all">
       <h1> BOOM. Cancelled </h1>
       <a href="#myeventsmain" class="ui-btn ui-corner-all">My Events</a>
     </div>
 
-    <div data-role="footer" data-position="fixed">
-      <h3>Shmerling, Nguyen, Holeman & Co.</h3>
-    </div>
-  </div>
-</body>
-
-</html>
+{{> footer}}
 <!---Cancelled Page--------------------------------------->
 <div data-role="page" id="cantattend">
-  <div data-role="header">
-    <h1>HostLuck</h1>
-    <div data-role="navbar">
-      <ul>
-        <li>
-          <a href="#home" data-icon="home"></a>
-        </li>
-      </ul>
-    </div>
-  </div>
+{{> header_home}}
 
   <div data-role="main" class="ui-content ui-corner-all">
     <h1> It's ok, see you next time! </h1>
     <a href="#myeventsmain" class="ui-btn ui-corner-all">My Events</a>
   </div>
 
-  <div data-role="footer" data-position="fixed">
-    <h3>Shmerling, Nguyen, Holeman & Co.</h3>
-  </div>
-</div>
+{{> footer}}
 <!---EventSetup Page--------------------------------------->
 <div data-role="page" id="eventsetup">
-  <div data-role="header">
-    <h1>HostLuck</h1>
-    <div data-role="navbar">
-      <ul>
-        <li>
-          <a href="#anylink" data-rel="back" data-icon="arrow-l"></a>
-        </li>
-        <li>
-          <a href="#home" data-icon="home"></a>
-        </li>
-      </ul>
-    </div>
-  </div>
+{{> header_back_home}}
 
   <div data-role="main" class="ui-content ui-corner-all">
     <h1> Yay! Your Event has been set up! Congrats! </h1>
@@ -695,25 +419,10 @@
     <a href="#myeventsmain" class="ui-btn ui-corner-all">My Events</a>
   </div>
 
-  <div data-role="footer" data-position="fixed">
-    <h3>Shmerling, Nguyen, Holeman & Co.</h3>
-  </div>
-</div>
+{{> footer}}
 <!---EventSetup Page--------------------------------------->
 <div data-role="page" id="attending">
-  <div data-role="header">
-    <h1>HostLuck</h1>
-    <div data-role="navbar">
-      <ul>
-        <li>
-          <a href="#anylink" data-rel="back" data-icon="arrow-l"></a>
-        </li>
-        <li>
-          <a href="#home" data-icon="home"></a>
-        </li>
-      </ul>
-    </div>
-  </div>
+{{> header_back_home}}
 
   <div data-role="main" class="ui-content ui-corner-all">
     <h1> Your Attending an Event! Yay! </h1>
@@ -721,25 +430,10 @@
     <a href="#myeventsmain" class="ui-btn ui-corner-all">My Events</a>
   </div>
 
-  <div data-role="footer" data-position="fixed">
-    <h3>Shmerling, Nguyen, Holeman & Co.</h3>
-  </div>
-</div>
+{{> footer}}
 <!---Testing Page--------------------------------------->
 <div data-role="page" id="test">
-  <div data-role="header">
-    <h1>HostLuck</h1>
-    <div data-role="navbar">
-      <ul>
-        <li>
-          <a href="#anylink" data-rel="back" data-icon="arrow-l"></a>
-        </li>
-        <li>
-          <a href="#home" data-icon="home"></a>
-        </li>
-      </ul>
-    </div>
-  </div>
+{{> header_back_home}}
 
   <div data-role="content">
     <input name="demo" id="demo" class="i-txt" />
@@ -748,10 +442,7 @@
   <a href="#myeventsmain" class="ui-btn ui-corner-all">My Events</a>
 </div>
 
-<div data-role="footer" data-position="fixed">
-  <h3>Shmerling, Nguyen, Holeman & Co.</h3>
-</div>
-</div>
+{{> footer}}
 </body>
 
 </html>

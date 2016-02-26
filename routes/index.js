@@ -1,6 +1,13 @@
-var data = require("../public/json/data.json");
-
 exports.view = function(req, res){
-  console.log(data);
+  var data = {
+	"eventname": req.body.eventname,
+    "eventdate": req.body.eventdate,
+    "eventtime": req.body.eventtime,
+    "meal": "Temp",
+    "street": req.body.street,
+    "city": req.body.city,
+    "state": req.body.state,
+    "zip": req.body.zip,
+	} ;
   res.render('index', data);
- };
+};
